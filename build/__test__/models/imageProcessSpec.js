@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const path_1 = __importDefault(require("path"));
 const imageProcess_1 = __importDefault(require("../../models/imageProcess"));
 describe('Test imageProcess functionality', () => {
     it('if a file name does not exist', () => __awaiter(void 0, void 0, void 0, function* () {
@@ -24,6 +25,7 @@ describe('Test imageProcess functionality', () => {
     }));
     it('if a file exist and height and width inputs given are correct', () => __awaiter(void 0, void 0, void 0, function* () {
         const res = yield (0, imageProcess_1.default)('.tree.', 300, 500);
-        expect(res).toBe('/home/dahm/Desktop/jsUdacity/ImageProcessingAPI-/assets/thumb/tree.jpg');
+        const pth = path_1.default.join(path_1.default.resolve('./'), 'assets', 'thumb', 'tree.jpg');
+        expect(res).toBe(pth);
     }));
 });

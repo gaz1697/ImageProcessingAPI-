@@ -1,3 +1,4 @@
+import path from 'path';
 import supertest from 'supertest';
 import processImage from '../../models/imageProcess';
 
@@ -14,6 +15,7 @@ describe('Test imageProcess functionality', () => {
 
   it('if a file exist and height and width inputs given are correct', async () => {
     const res = await processImage('.tree.', 300, 500);
-    expect(res).toBe('/home/dahm/Desktop/jsUdacity/ImageProcessingAPI-/assets/thumb/tree.jpg');
+    const pth = path.join(path.resolve('./'), 'assets', 'thumb', 'tree.jpg');
+    expect(res).toBe(pth);
   });
 });
