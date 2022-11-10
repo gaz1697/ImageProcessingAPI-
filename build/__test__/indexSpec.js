@@ -13,13 +13,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
-//import { isAwaitExpression } from 'typescript';
 const index_1 = __importDefault(require("../index"));
 //create a request object
 const request = (0, supertest_1.default)(index_1.default);
-describe('Test basic endpoint server', () => {
-    it('get the / endpoint', () => __awaiter(void 0, void 0, void 0, function* () {
-        const response = yield request.get('/');
+describe('Test images endpoint and functionality', () => {
+    it('no input', () => __awaiter(void 0, void 0, void 0, function* () {
+        const response = yield request.get('/api/images/');
+        expect(response.status).toBe(400);
+    }));
+    it('if a file name does not exist', () => __awaiter(void 0, void 0, void 0, function* () {
+        const response = yield request.get('/api/images/?filename=%22trere%22&width=500&height=4000');
+        expect(response.text).toBe("file doesn't exist");
+    }));
+    it('if a file exist but height and width inputs given are not accepted', () => __awaiter(void 0, void 0, void 0, function* () {
+        const response = yield request.get('/api/images/?filename=%22tree%22');
+        expect(response.text).toBe('wrong values');
+    }));
+    it('if a file exist and height and width inputs given are correct', () => __awaiter(void 0, void 0, void 0, function* () {
+        const response = yield request.get('/api/images/?filename=%22tree%22&width=500&height=400');
         expect(response.status).toBe(200);
     }));
 });

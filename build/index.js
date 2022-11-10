@@ -4,16 +4,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const index_1 = __importDefault(require("./routes/index"));
 const PORT = 2400;
 // create server instance
 const app = (0, express_1.default)();
-// add routing for / path
-app.get('/', (req, res) => {
-    res.send('hello jjijij jjnjn  world');
-});
+// add routes
+//app.get('/', (req, res) => {
+// res.sendStatus(200);
+//});
+app.use('/api', index_1.default);
 // start server
 app.listen(PORT, () => {
+    // const thumbPath = path.resolve(__dirname, '../assets/thumb');
+    // if (!fs.existsSync(thumbPath)) {
+    //   fs.mkdirSync(thumbPath);
+    // }
     console.log('server is starting at port:' + PORT);
 });
-//console.log(sumd(20,30));
 exports.default = app;

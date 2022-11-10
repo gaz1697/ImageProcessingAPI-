@@ -1,6 +1,6 @@
-<h1 align="center">Welcome to Image Processing API 👋</h1>
+<h1 align="center">Welcome to imageprocessingapi- 👋</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.0.9-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/gaz1697/ImageProcessingAPI-#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
@@ -8,11 +8,11 @@
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
   </a>
   <a href="https://github.com/gaz1697/ImageProcessingAPI-/blob/master/LICENSE" target="_blank">
-    <img alt="License: ISC" src="https://img.shields.io/github/license/gaz1697/Image Processing API" />
+    <img alt="License: ISC" src="https://img.shields.io/github/license/gaz1697/imageprocessingapi-" />
   </a>
 </p>
 
-> Image resizing and processing tool
+> hello everyone i am writing from vs on ubntu
 
 ### 🏠 [Homepage](https://github.com/gaz1697/ImageProcessingAPI-#readme)
 
@@ -36,8 +36,6 @@ npm run test
 
 ## Author
 
-👤 **abdulrahman**
-
 * Github: [@gaz1697](https://github.com/gaz1697)
 
 ## 🤝 Contributing
@@ -50,7 +48,6 @@ Give a ⭐️ if this project helped you!
 
 ## 📝 License
 
-Copyright © 2022 [abdulrahman](https://github.com/gaz1697).<br />
 This project is [ISC](https://github.com/gaz1697/ImageProcessingAPI-/blob/master/LICENSE) licensed.
 
 ***
