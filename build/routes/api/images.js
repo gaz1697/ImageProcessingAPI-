@@ -13,58 +13,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const sharp_1 = __importDefault(require("sharp"));
-const fs_1 = __importDefault(require("fs"));
-const path_1 = __importDefault(require("path"));
-const image_size_1 = __importDefault(require("image-size"));
-function resizeImage(imgP, imgSP, wid, hei, res) {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            yield (0, sharp_1.default)(imgP)
-                .resize({
-                width: wid,
-                height: hei,
-            })
-                .toFile(imgSP);
-            res.sendFile(imgSP);
-        }
-        catch (err) {
-            res.send('wrong values');
-        }
-    });
-}
+const imageProcess_1 = __importDefault(require("../../models/imageProcess"));
 const images = express_1.default.Router();
 images.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const filename = req.query.filename;
-        const width = req.query.width;
-        const height = req.query.height;
-        const fname = filename.substring(1, filename.length - 1);
-        const wid = +width;
-        const hei = +height;
-        const pth = path_1.default.join(path_1.default.resolve('./'), 'assets', 'images', fname) + '.jpg';
-        const thuPth = path_1.default.join(path_1.default.resolve('./'), 'assets', 'thumb', fname) + '.jpg';
-        if (!fs_1.default.existsSync(pth)) {
-            res.send("file doesn't exist");
-        }
-        else {
-            if (!fs_1.default.existsSync(thuPth)) {
-                resizeImage(pth, thuPth, wid, hei, res);
-            }
-            else {
-                const sizeD = (0, image_size_1.default)(thuPth);
-                if (wid != (yield sizeD.width) || hei != (yield sizeD.height)) {
-                    resizeImage(pth, thuPth, wid, hei, res);
-                }
-                else {
-                    res.sendFile(thuPth);
-                    console.log('old');
-                }
-            }
-        }
+    const filename = yield req.query.filename;
+    const width = yield req.query.width;
+    const height = yield req.query.height;
+    const img = yield (0, imageProcess_1.default)(filename, width, height);
+    if (img == 'wrong inputs' || img == "file doesn't exist" || img == 'enter file name, width and height') {
+        res.send(img);
     }
-    catch (err) {
-        res.sendStatus(400);
+    else {
+        res.sendFile(img);
     }
 }));
 exports.default = images;

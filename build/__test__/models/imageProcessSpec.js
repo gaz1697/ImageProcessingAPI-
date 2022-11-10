@@ -12,25 +12,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const supertest_1 = __importDefault(require("supertest"));
-const index_1 = __importDefault(require("../index"));
-//create a request object
-const request = (0, supertest_1.default)(index_1.default);
-describe('Test images endpoint and functionality', () => {
-    it('no input', () => __awaiter(void 0, void 0, void 0, function* () {
-        const response = yield request.get('/api/images/');
-        expect(response.text).toBe('enter file name, width and height');
-    }));
+const imageProcess_1 = __importDefault(require("../../models/imageProcess"));
+describe('Test imageProcess functionality', () => {
     it('if a file name does not exist', () => __awaiter(void 0, void 0, void 0, function* () {
-        const response = yield request.get('/api/images/?filename=%22trere%22&width=500&height=4000');
-        expect(response.text).toBe("file doesn't exist");
+        const res = yield (0, imageProcess_1.default)('rerr', 300, 200);
+        expect(res).toBe("file doesn't exist");
     }));
     it('if a file exist but height and width inputs given are not accepted', () => __awaiter(void 0, void 0, void 0, function* () {
-        const response = yield request.get('/api/images/?filename=%22tree%22');
-        expect(response.text).toBe('wrong inputs');
+        const res = yield (0, imageProcess_1.default)('.tree.', 34, -1);
+        expect(res).toBe('wrong inputs');
     }));
     it('if a file exist and height and width inputs given are correct', () => __awaiter(void 0, void 0, void 0, function* () {
-        const response = yield request.get('/api/images/?filename=%22tree%22&width=500&height=400');
-        expect(response.status).toBe(200);
+        const res = yield (0, imageProcess_1.default)('.tree.', 300, 500);
+        expect(res).toBe('/home/dahm/Desktop/jsUdacity/ImageProcessingAPI-/assets/thumb/tree.jpg');
     }));
 });

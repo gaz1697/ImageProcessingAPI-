@@ -6,7 +6,7 @@ const request = supertest(app);
 describe('Test images endpoint and functionality', () => {
   it('no input', async () => {
     const response = await request.get('/api/images/');
-    expect(response.status).toBe(400);
+    expect(response.text).toBe('enter file name, width and height');
   });
 
   it('if a file name does not exist', async () => {
@@ -16,7 +16,7 @@ describe('Test images endpoint and functionality', () => {
 
   it('if a file exist but height and width inputs given are not accepted', async () => {
     const response = await request.get('/api/images/?filename=%22tree%22');
-    expect(response.text).toBe('wrong values');
+    expect(response.text).toBe('wrong inputs');
   });
 
   it('if a file exist and height and width inputs given are correct', async () => {

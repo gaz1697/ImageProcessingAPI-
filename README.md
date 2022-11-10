@@ -34,9 +34,31 @@ npm run start
 npm run test
 ```
 
+## ENDPOINTS
+
+```sh
+  http://localhost:2400/api/images/
+```
+
+## URL
+
+```sh
+  will return a processed image with specified width and height
+  http://localhost:2400/api/images/?filename=%22tree%22&width=500&height=500
+
+  will return an error message because of missing file
+  http://localhost:2400/api/images/?filename=%22trree%22&width=500&height=500
+
+  will return an error message because of wrong inputs
+  http://localhost:2400/api/images/?filename=%22tree%22&width=-1
+
+  will return an error message because there is no inputs
+  http://localhost:2400/api/images/
+```
+
 ## Author
 
-* Github: [@gaz1697](https://github.com/gaz1697)
+- Github: [@gaz1697](https://github.com/gaz1697)
 
 ## 🤝 Contributing
 
@@ -50,5 +72,6 @@ Give a ⭐️ if this project helped you!
 
 This project is [ISC](https://github.com/gaz1697/ImageProcessingAPI-/blob/master/LICENSE) licensed.
 
-***
+---
+
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
